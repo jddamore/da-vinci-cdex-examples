@@ -1,0 +1,216 @@
+<Bundle xmlns="http://hl7.org/fhir">
+   <type value="transaction"/>
+   <entry>
+      <resource>
+         <Endpoint xmlns="http://hl7.org/fhir">
+            <id value="Payer-Endpoint-20190529083001"/>
+            <identifier>
+               <system value="https://www.maxmddirect.com/fhir/identifier"/>
+               <value value="MaxMDDemoPayerEndpoint-local"/>
+            </identifier>
+            <connectionType>
+               <system value="http://terminology.hl7.org/CodeSystem/endpoint-connection-type"/>
+               <code value="hl7-fhir-rest"/>
+            </connectionType>
+            <name value="Payer FHIR Endpoint"/>
+            <payloadType>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/endpoint-payload-type"/>
+                  <code value="urn:hl7-org:sdwg:ccda-structuredBody:2.1"/>
+               </coding>
+            </payloadType>
+            <payloadType>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/endpoint-payload-type"/>
+                  <code value="urn:hl7-org:sdwg:ccda-nonXMLBody:2.1"/>
+               </coding>
+            </payloadType>
+            <address value="http://10.9.8.16:8097/payer/baseR4/Communication"/>
+         </Endpoint>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Endpoint"/>
+         <ifNoneExist value="identifier=https%3A%2F%2Fwww.maxmddirect.com%2Ffhir%2Fidentifier%7CMaxMDDemoPayerEndpoint-local"/>
+      </request>
+   </entry>
+   <entry>
+      <resource>
+         <Organization xmlns="http://hl7.org/fhir">
+            <id value="Payer-Organization-20190529083001"/>
+            <identifier>
+               <system value="http://www.Anthem.com/edi"/>
+               <value value="DemoPayer"/>
+            </identifier>
+            <identifier>
+               <system value="https://www.maxmddirect.com/fhir/identifier"/>
+               <value value="MaxMDDemoPayerOrganization-local"/>
+            </identifier>
+            <name value="MaxMD Demo Payer Solutions"/>
+            <telecom id="1">
+               <system value="phone"/>
+               <value value="800-123-5555"/>
+               <use value="work"/>
+            </telecom>
+            <address id="1">
+               <use value="work"/>
+               <type value="postal"/>
+               <text value="711 Security Blvd, Baltimore, MD 21075"/>
+               <line value="711 Security Blvd"/>
+               <city value="Baltimore"/>
+               <state value="MD"/>
+               <postalCode value="21075"/>
+               <country value="US"/>
+            </address>
+            <endpoint>
+               <reference value="Endpoint/Payer-Endpoint-20190529083001"/>
+            </endpoint>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+         <ifNoneExist value="identifier=https%3A%2F%2Fwww.maxmddirect.com%2Ffhir%2Fidentifier%7CMaxMDDemoPayerOrganization-local"/>
+      </request>
+   </entry>
+   <entry>
+      <resource>
+         <Coverage xmlns="http://hl7.org/fhir">
+            <id value="Payer-Coverage-20190529083001"/>
+            <extension url="http://hl7.org/fhir/StructureDefinition/coverage-rxbin">
+               <valueString value="012345"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/coverage-rxpcn">
+               <valueString value="8792000"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/coverage-rxgroup">
+               <valueString value="KING67"/>
+            </extension>
+            <identifier>
+               <system value="https://www.maxmddirect.com/fhir/identifier"/>
+               <value value="MaxMDDemoPayerCoverage-Sofia-local"/>
+            </identifier>
+            <status value="active"/>
+            <type>
+               <coding>
+                  <system value="http://hl7.org/fhir/v3/ActCode"/>
+                  <code value="HIP"/>
+                  <display value="health insurance plan policy"/>
+               </coding>
+            </type>
+            <subscriber>
+               <reference value="Patient?given=Sofia&amp;family=Mateos&amp;address-postalcode=15235&amp;birthdate=1960-02-01"/>
+            </subscriber>
+            <beneficiary>
+               <reference value="Patient?given=Sofia&amp;family=Mateos&amp;address-postalcode=15235&amp;birthdate=1960-02-01"/>
+            </beneficiary>
+            <relationship>
+               <coding>
+                  <system value="http://hl7.org/fhir/policyholder-relationship"/>
+                  <code value="self"/>
+               </coding>
+            </relationship>
+            <period>
+               <start value="2006-11-01T00:00:00-07:00"/>
+            </period>
+            <payor>
+               <reference value="Organization/Payer-Organization-20190529083001"/>
+            </payor>
+            <order value="1"/>
+            <network value="BLUECARD"/>
+         </Coverage>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Coverage"/>
+         <ifNoneExist value="identifier=https%3A%2F%2Fwww.maxmddirect.com%2Ffhir%2Fidentifier%7CMaxMDDemoPayerCoverage-Sofia-local"/>
+      </request>
+   </entry>
+   <entry>
+      <resource>
+         <CommunicationRequest xmlns="http://hl7.org/fhir">
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">CommunicationRequest: Please return the requested data</div>
+            </text>
+            <contained>
+               <Organization xmlns="http://hl7.org/fhir">
+                  <id value="example-provider-20190529083001"/>
+                  <identifier>
+                     <system value="http://www.GoodHelath.com/edi"/>
+                     <value value="Good Health"/>
+                  </identifier>
+                  <telecom id="1">
+                     <system value="phone"/>
+                     <value value="800-444-5555"/>
+                     <use value="work"/>
+                  </telecom>
+                  <address id="1">
+                     <use value="work"/>
+                     <type value="postal"/>
+                     <text value="8866 S 17th St, Indianapolis, IN 46077, US"/>
+                     <line value="8866 S 17th St "/>
+                     <city value="Indianapolis"/>
+                     <state value="IN"/>
+                     <postalCode value="46077"/>
+                     <country value="US"/>
+                  </address>
+               </Organization>
+            </contained>
+            <identifier>
+               <system value="http://www.directmdemail.com/CodeSystem/communication-request-identifier"/>
+               <value value="request-20190529083001-6huovuaocevs5i8ru56m4ltd33"/>
+            </identifier>
+            <groupIdentifier>
+               <value value="12345"/>
+            </groupIdentifier>
+            <status value="active"/>
+            <category>
+               <coding>
+                  <system value="http://www.directmdemail.com/CodeSystem/communication-category"/>
+                  <code value="requestData"/>
+               </coding>
+               <text value="Please return the requested type of documentation"/>
+            </category>
+            <subject>
+               <reference value="Patient?given=Sofia&amp;family=Mateos&amp;address-postalcode=15235&amp;birthdate=1960-02-01"/>
+            </subject>
+            <about>
+               <reference value="Coverage/Payer-Coverage-20190529083001"/>
+            </about>
+            <payload>
+               <extension url="http://hl7.org/fhir/us/davinci-cdex/StructureDefinition/cdex-payload-query-string">
+                  <valueString value="Observation?date=ge2016-10-01&amp;code=4548-4"/>
+               </extension>
+               <contentString value="What are the A1C results after 2016-10-01 for this patient?"/>
+            </payload>
+            <payload>
+               <extension url="http://hl7.org/fhir/us/davinci-cdex/StructureDefinition/cdex-payload-query-string">
+                  <valueString value="Observation?_sort=-date&amp;category=vital-signs"/>
+               </extension>
+               <contentString value="What are the patient's vital sign measurements in reverse chronological order?"/>
+            </payload>
+            <authoredOn value="2019-05-29T08:30:01"/>
+            <requester>
+               <reference value="Organization/Payer-Organization-20190529083001"/>
+            </requester>
+            <recipient>
+               <reference value="#example-provider-20190529083001"/>
+            </recipient>
+            <sender>
+               <reference value="Organization/Payer-Organization-20190529083001"/>
+            </sender>
+            <reasonCode>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-ActReason"/>
+                  <code value="CAREMGT"/>
+               </coding>
+            </reasonCode>
+         </CommunicationRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="CommunicationRequest"/>
+      </request>
+   </entry>
+</Bundle>
